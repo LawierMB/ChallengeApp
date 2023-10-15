@@ -5,9 +5,9 @@
 
 // Zadanie 2
 
-var imie = "Ewa";
+var imie = "Ania";
 var plec = 'k';
-var wiek = 33;
+var wiek = 29;
 
 Console.WriteLine("przyjęto dane do sprawdzenia: ");
 Console.WriteLine("Imię: " + imie + " płeć: " + plec + " Wiek: " + wiek + " :");
@@ -18,9 +18,9 @@ if (plec == 'k')
     {
         Console.WriteLine("Ewa, lat 33 ");
     }
-    else if (wiek < 33)
+    else if (wiek < 30)
     {
-        Console.WriteLine("Kobieta poniżej 33 lat");
+        Console.WriteLine("Kobieta poniżej 30 lat");
     } 
 }
 else if (wiek < 18)
