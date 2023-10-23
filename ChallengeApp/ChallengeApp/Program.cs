@@ -1,56 +1,38 @@
-﻿// Przygotój program, który policzy ile jakich cyfr występuje w podanej liczbie
+﻿// Pierwsza klasa
+User user1 = new User("Marek", "Marek", "Password");
+User user2 = new User("Norbert");
+User user3 = new User("Gosia");
+User user4 = new User("Damian");
+User user5 = new User();
 
-var number = 4566;
-var numberToString = number.ToString();
-var letters = numberToString.ToArray();
-int[] counterLeters = new int[10];
+//user1.login = "Marek";        // bezpośrednie przypisanie do obiektu
+//user1.password = "Password";  // gdy zmienne są publiczne
 
-
-/*for (int index = 0; index < 10; index++)
+class User
 {
-    counterLeters[index] = index;
-}*/
+    private string login;
+    private string password;
+    private string name;
 
-
-
-foreach (var letter in letters)
-{
-    if (letter == '0')
+    // pierwszy konstruktor
+    public User(string login) 
+         {
+           this.login = login;
+         }
+    // kolejne konstruktory może być ich wiele
+    public User()
     {
-        counterLeters[0]++;
-    }else if (letter == '1')
-    {
-        counterLeters[1]++;
-    }else if (letter == '2')
-    {
-        counterLeters[2]++;
-    }else if (letter == '3')
-    {
-        counterLeters[3]++;
-    }else if (letter == '4')
-    {
-        counterLeters[4]++;
-    }else if (letter == '5')
-    {
-        counterLeters[5]++;
-    }else if (letter == '6')
-    {
-        counterLeters[6]++;
-    }else if (letter == '7')
-    {
-        counterLeters[7]++;
-    }else if (letter == '8')
-    {
-        counterLeters[8]++;
-    }else
-    {
-        counterLeters[9]++;
+        this.login = "-";
+        this.password = "-";
+        this.name = "-";   
     }
-    
-}
 
-Console.WriteLine("Podliczenie cyfr w liczbie: " + number + " Wygląda następująco: ");
-for (int index = 0; index < 10; index++)
-{
-    Console.WriteLine("Cyfra: " + index + " Wystąpienie: " + counterLeters[index] + " Razy !");
+    public User(string login, string password, string name )
+    {
+        this.login = login;
+        this.password = password;
+        this.name = name;
+    }
+
+
 }
