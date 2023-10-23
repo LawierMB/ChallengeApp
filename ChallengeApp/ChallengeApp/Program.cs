@@ -1,38 +1,37 @@
 ﻿// Pierwsza klasa
-User user1 = new User("Marek", "Marek", "Password");
-User user2 = new User("Norbert");
-User user3 = new User("Gosia");
-User user4 = new User("Damian");
-User user5 = new User();
+using System.Runtime.CompilerServices;
+using System.Security.AccessControl;
 
-//user1.login = "Marek";        // bezpośrednie przypisanie do obiektu
-//user1.password = "Password";  // gdy zmienne są publiczne
+User user1 = new User("Marek", "Password1");
+User user2 = new User("Norbert", "Password2");
+User user3 = new User("Gosia", "Password3");
+User user4 = new User("Damian", "Password4");
+
+
+Console.WriteLine("Uąytkownik 1: " + user1.Login + " " + user1.Password);
+Console.WriteLine("Uąytkownik 3: " + user3.Login + " " + user3.Password);
+
+user1.AddScore(5);
 
 class User
 {
-    private string login;
-    private string password;
-    private string name;
+    private int score; // prywatna zmienna przechowująca punkty użytkownika
 
-    // pierwszy konstruktor
-    public User(string login) 
-         {
-           this.login = login;
-         }
-    // kolejne konstruktory może być ich wiele
-    public User()
+    public User(string login, string password)
     {
-        this.login = "-";
-        this.password = "-";
-        this.name = "-";   
+        this.Login = login;         // pobranie i przypisanie loginu nowego użytkownika
+        this.Password = password;   // przypisanie hasła
+        this.score = 0;             // ustawienie punktacji dla nowego użytkownika
+
     }
 
-    public User(string login, string password, string name )
+    // propercje (pola) czystrzy sposób odczytania i ew zmian w zmiennych klasy
+    public string Login { get; private set; }    // ustawienie Login do odczytu get; i prywatne set; ustawienie
+    public string Password { get; private set; } // jak wyżej dla Password
+
+    // pierwsza metoda - przykładowo dodawanie punktów dla użytkownika
+    public void AddScore(int scorepoint)
     {
-        this.login = login;
-        this.password = password;
-        this.name = name;
+        this.score += scorepoint;
     }
-
-
 }
