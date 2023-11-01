@@ -6,6 +6,12 @@ namespace ChallengeApp
         // tworzenie nowego kontenera listy "score" do przechowywania punktów
         private List<int> score = new List<int>();
 
+
+        public User(string login)
+        {
+            this.Login = login;         // pobranie i przypisanie loginu nowego użytkownika
+        }
+
         public User(string login, string password)
         {
             this.Login = login;         // pobranie i przypisanie loginu nowego użytkownika
