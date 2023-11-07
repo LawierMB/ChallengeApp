@@ -14,7 +14,7 @@
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
        
-        public void AddGrade(int grade)
+        public void AddGrade(float grade)
         {
             // metoda przy każdym wywołaniu dodaje kolejne punkty do listy
             this.grades.Add(grade);
@@ -35,8 +35,7 @@
                 statistics.Min = Math.Min(statistics.Min, grade);
                 // sumuje wartośći grade w zmiennej statistics.Average
                 statistics.Average += grade;
-            }
-            // statistics.Average = statistics.Average / this.grades.Count; // inna wersja wyliczenia średniej 
+            }            
             statistics.Average /= this.grades.Count;
             
 
