@@ -35,7 +35,6 @@
             // assert 
             Assert.AreEqual(4.57, Math.Round(Math.Abs(statistic.Average), 2));
         }
-
         [Test]
         public void WhenISubmittedThreeGradesIDidntReceiveTheExpectedAverage()
         {
@@ -68,6 +67,45 @@
 
             // assert 
             Assert.AreEqual(9, Math.Round(Math.Abs(statistic.Max), 2));
+        }
+        [Test]
+        public void TheAverageGradeReachesTheBRange()
+        {
+            // arrange 
+            var employee = new Employee("Artem", "Dziarski");
+
+            employee.AddGrade('C');
+            employee.AddGrade(70);
+            employee.AddGrade(85);
+            employee.AddGrade(40);
+            employee.AddGrade(82);
+
+            // act 
+            var statistic = employee.GetStatistics();
+
+            // assert 
+            Assert.AreEqual('B', statistic.AverageLetter);
+            Assert.AreEqual(85, Math.Round(Math.Abs(statistic.Max), 2));
+            Assert.AreEqual(40, Math.Round(Math.Abs(statistic.Min), 2));
+        }
+        [Test]
+        public void TheAverageGradeReachesTheCRange()
+        {
+            // arrange 
+            var employee = new Employee("Artem", "Dziarski");
+
+            employee.AddGrade('d');
+            employee.AddGrade('d');
+            employee.AddGrade('c');
+            employee.AddGrade('b');
+
+            // act 
+            var statistic = employee.GetStatistics();
+
+            // assert 
+            Assert.AreEqual('C', statistic.AverageLetter);
+            Assert.AreEqual(80, Math.Round(Math.Abs(statistic.Max), 2));
+            Assert.AreEqual(40, Math.Round(Math.Abs(statistic.Min), 2));
         }
     }
 }
