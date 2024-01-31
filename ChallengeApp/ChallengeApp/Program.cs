@@ -19,13 +19,20 @@ while (true)
         break;
     }
 
-    if (char.TryParse(input, out char result))
+    try
     {
-        employee.AddGrade(result);
+        if (char.TryParse(input, out char result))
+        {
+            employee.AddGrade(result);
+        }
+        else
+        {
+            employee.AddGrade(input);
+        }
     }
-    else
+    catch (Exception e) 
     {
-        employee.AddGrade(input);
+        Console.WriteLine($"Exception Catchet:{e.Message}");
     }
 }
 

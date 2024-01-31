@@ -23,7 +23,7 @@ namespace ChallengeApp
             }
             else
             {
-                Console.WriteLine(grade +" Inwalid grade values !!");
+                throw new Exception($" {grade} Inwalid grade values !");
             }
         }
         public void AddGrade(string grade)
@@ -35,7 +35,7 @@ namespace ChallengeApp
             }
             else
             {
-                Console.WriteLine("This string: " + grade + " is not float !");
+                throw new Exception($"This string: {grade} is not float !");
             }
         }
         public void AddGrade(int grade)
@@ -52,7 +52,7 @@ namespace ChallengeApp
             }
             else
             {
-                Console.WriteLine("variable range exceeded: " + grade + " is not float !");
+                throw new Exception($"variable range exceeded: {grade} is not float !");
             }
         }
         public void AddGrade(char grade)
@@ -61,26 +61,26 @@ namespace ChallengeApp
             {
                 case 'A':
                 case 'a':
-                    this.grades.Add(100);
+                    this.AddGrade(100);
                     break;
                 case 'B':
                 case 'b':
-                    this.grades.Add(80);
+                    this.AddGrade(80);
                     break;
                 case 'C':
                 case 'c':
-                    this.grades.Add(60);
+                    this.AddGrade(60);
                     break;
                 case 'D':
                 case 'd':
-                    this.grades.Add(40);
+                    this.AddGrade(40);
                     break;
                 case 'E':
                 case 'e':
-                    this.grades.Add(20);
+                    this.AddGrade(20);
                     break;
-                default: Console.WriteLine("Wrong Letter !");
-                    break;
+                default:
+                    throw new Exception("Wrong Letter !");
             }
         }
         public Statistics GetStatistics()
