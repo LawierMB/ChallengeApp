@@ -1,19 +1,22 @@
-﻿using System.Diagnostics;
-
-namespace ChallengeApp
+﻿namespace ChallengeApp
 {
-    public class Employee
+    public class Employee : Person
     {       
         private List<float> grades = new List<float>();
-
-        public Employee(string FirstName, string LastName) 
+        public string Age { get; private set; }
+        public Employee(string FirstName, string LastName)
+            : base(FirstName, LastName)
         {
-            this.FirstName = FirstName;
-            this.LastName = LastName;
         }
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
-       
+        public Employee(string FirstName, string LastName, string Sex)
+            : base(FirstName, LastName, Sex)
+        {
+        }
+        public Employee(string FirstName, string LastName, string Sex, string Age)
+            : base(FirstName, LastName, Sex)
+        {
+            this.Age = Age;
+        }
         public void AddGrade(float grade)
         {
             // metoda przy każdym wywołaniu dodaje kolejne punkty do listy
@@ -29,6 +32,7 @@ namespace ChallengeApp
         public void AddGrade(string grade)
         {
             // sprawdza czy grade da się sparsować do float jeśli tak to przypisuje do result
+            
             if (float.TryParse(grade, out float result))
             {
                 this.AddGrade(result);

@@ -7,9 +7,12 @@ Console.WriteLine("Podaj Imię pracownika: ");
 var name = Console.ReadLine();
 Console.WriteLine("Podaj Nazwisko pracownika: ");
 var lastName = Console.ReadLine();
+Console.WriteLine("Podaj płeć pracownika: ");
+var sex = Console.ReadLine();
+Console.WriteLine("Podaj Wiek pracownika: ");
+var age = Console.ReadLine();
 
-var employee = new Employee(name, lastName);
-
+var employee = new Employee(name, lastName, sex, age);
 while (true)
 {
     Console.WriteLine("Podaj kolejną ocenę pracownika " + name + " " + lastName + ": ");
@@ -30,7 +33,7 @@ while (true)
             employee.AddGrade(input);
         }
     }
-    catch (Exception e) 
+    catch (Exception e)
     {
         Console.WriteLine($"Exception Catchet:{e.Message}");
     }
