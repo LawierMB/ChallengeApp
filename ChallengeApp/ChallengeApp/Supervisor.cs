@@ -2,6 +2,8 @@
 {
     public class Supervisor : IEmployee
     {
+        private List<float> grades = new List<float>();
+
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
 
@@ -13,7 +15,14 @@
 
         public void AddGrade(float grade)
         {
-            throw new NotImplementedException();
+            if (grade >= 0 && grade <= 100)
+            {
+                this.grades.Add(grade);
+            }
+            else
+            {
+                throw new Exception($" {grade} Inwalid grade values !");
+            }
         }
 
         public void AddGrade(string grade)
