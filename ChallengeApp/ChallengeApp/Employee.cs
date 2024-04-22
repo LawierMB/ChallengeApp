@@ -68,7 +68,7 @@
         public void AddGrade(char grade)
         {
             switch (grade)
-            {
+            {  
                 case 'A':
                 case 'a':
                     this.AddGrade(100);

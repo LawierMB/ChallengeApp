@@ -11,45 +11,74 @@ Console.WriteLine("| Dodajesz pracownika: (P), kierownika (K) czy wychodzisz (Q)
 var objectType = Console.ReadLine();
 
 
-if (objectType.ToUpper() == "P")
-{
-    AddDataPerson("pracownika", 1);
-
-    var employee = new Employee(name, lastName, sex, age);
-
-    while (true)
+    switch (objectType.ToUpper())
     {
-        Console.WriteLine("Podaj kolejną ocenę pracownika " + name + " " + lastName + ": ");
-        var input = Console.ReadLine();
-        if (input == "q")
-        {
-            break;
-        }
-
-        try
-        {
-            if (char.TryParse(input, out char result))
+        case "Q":
             {
-                employee.AddGrade(result);
+                return;
             }
-            else
+        case "P":
             {
-                employee.AddGrade(input);
+                AddDataPerson("pracownika", 1);
+                var employee = new Employee(name, lastName, sex, age);
+            while (true)
+            {
+                Console.WriteLine("Podaj kolejną ocenę w zakresie od 0 do 100 i A do E dla pracownika " + name + " " + lastName + ": ");
+                var input = Console.ReadLine();
+                if (input == "q")
+                {
+                    break;
+                }
+                try
+                {
+                    if (char.TryParse(input, out char result))
+                    {
+                        employee.AddGrade(result);
+                    }
+                    else
+                    {
+                        employee.AddGrade(input);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Exception Catchet:{e.Message}");
+                }
             }
-        }
-        catch (Exception e)
+            var statistic = employee.GetStatistics();
+            Console.WriteLine($"Average :{statistic.Average:N2}");
+            Console.WriteLine($"Max :{statistic.Max}");
+            Console.WriteLine($"Min :{statistic.Min}");
+            Console.WriteLine($"Grade :{statistic.AverageLetter}");
+        }break;
+    case "K":
         {
-            Console.WriteLine($"Exception Catchet:{e.Message}");
+            AddDataPerson("Kierownika", 2);
+            var supervisor = new Supervisor(name, lastName);
+            while (true)
+            {
+                Console.WriteLine("Podaj kolejną ocenę w zakresie od 1 (+/-) do 6 (+/-) dla Kierownika  " + name + " " + lastName + ": ");
+                var input = Console.ReadLine();
+                if (input == "q")
+                {
+                    break;
+                }
+                try
+                {
+                    supervisor.AddGrade(input);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Exception Catchet:{e.Message}");
+                }
+            }
+            var statistic = supervisor.GetStatistics();
+            Console.WriteLine($"Average :{statistic.Average:N2}");
+            Console.WriteLine($"Max :{statistic.Max}");
+            Console.WriteLine($"Min :{statistic.Min}");
         }
-    }
-
-    var statistic = employee.GetStatistics();
-    Console.WriteLine($"Average :{statistic.Average:N2}");
-    Console.WriteLine($"Max :{statistic.Max}");
-    Console.WriteLine($"Min :{statistic.Min}");
-    Console.WriteLine($"Grade :{statistic.AverageLetter}");
-}        
-    
+        break;
+    }    
 void AddDataPerson(string personType, int idPerson)
 {
     switch (idPerson)
@@ -71,8 +100,10 @@ void AddDataPerson(string personType, int idPerson)
                 Console.WriteLine($"Podaj Imię {personType}: ");
                 name = Console.ReadLine();
                 Console.WriteLine($"Podaj Nazwisko {personType} ");
+                lastName = Console.ReadLine();
             }break;
 
     }
 }
+
 
