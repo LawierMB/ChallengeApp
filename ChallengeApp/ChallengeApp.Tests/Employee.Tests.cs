@@ -93,7 +93,7 @@
         {
             // arrange 
             var employee = new Employee("Artem", "Dziarski", "M");
-
+            
             employee.AddGrade('d');
             employee.AddGrade('d');
             employee.AddGrade('c');
@@ -107,5 +107,24 @@
             Assert.AreEqual(80, Math.Round(Math.Abs(statistic.Max), 2));
             Assert.AreEqual(40, Math.Round(Math.Abs(statistic.Min), 2));
         }
+        //[Test]
+        //public void AddingAManagerWithGrades()
+        //{
+        //    // arrange
+        //    var supervisor = new Supervisor("Antoni", "Bombel");
+
+        //    supervisor.AddGrade(5);
+        //    supervisor.AddGrade("-2");
+        //    supervisor.AddGrade('b');
+
+        //    // act
+        //    var statistics = supervisor.GetStatistics();
+
+        //    // assert
+        //    Assert.AreEqual(58.32, Math.Round(Math.Abs(statistics.Average), 2));
+        //    Assert.AreEqual(80, Math.Round(Math.Abs(statistics.Max), 2));
+        //    Assert.AreEqual(15, Math.Round(Math.Abs(statistics.Min), 2));
+
+        //}
     }
 }

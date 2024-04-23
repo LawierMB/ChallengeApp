@@ -31,14 +31,7 @@ var objectType = Console.ReadLine();
                 }
                 try
                 {
-                    if (char.TryParse(input, out char result))
-                    {
-                        employee.AddGrade(result);
-                    }
-                    else
-                    {
-                        employee.AddGrade(input);
-                    }
+                    employee.AddGrade(input);
                 }
                 catch (Exception e)
                 {

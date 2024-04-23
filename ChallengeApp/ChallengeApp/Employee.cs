@@ -38,12 +38,15 @@
         public void AddGrade(string grade)
         {
             // sprawdza czy grade da się sparsować do float jeśli tak to przypisuje do result
-            
+
             if (float.TryParse(grade, out float result))
             {
                 this.AddGrade(result);
             }
-            else
+            else if (char.TryParse(grade, out char charResult))
+            {
+                this.AddGrade(charResult);
+            }else                 
             {
                 throw new Exception($"This string: {grade} is not float !");
             }
