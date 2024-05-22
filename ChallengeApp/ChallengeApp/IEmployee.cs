@@ -1,6 +1,6 @@
 ﻿namespace ChallengeApp
 {
-    internal interface IEmployee
+    public interface IEmployee
     {
         public string FirstName { get; }
         public string LastName { get; }
@@ -12,6 +12,8 @@
         void AddGrade(int grade);
 
         void AddGrade(double grade);
+
+        void AddGrade(char grade);
 
         Statistics GetStatistics();
     }

@@ -1,29 +1,26 @@
 ﻿namespace ChallengeApp
 {
-    public class Employee : IEmployee
-    {       
+    public class EmployeeInMemory : EmployeeBase
+    {
         private List<float> grades = new List<float>();
 
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
         public string Sex { get; private set; }
         public string Age { get; private set; }
-        public Employee(string FirstName, string LastName)
+        public EmployeeInMemory(string FirstName, string LastName) 
+            : base(FirstName, LastName)
         {
-            this.FirstName = FirstName;
-            this.LastName = LastName;
         }
-        public Employee(string FirstName, string LastName, string Sex)
-        {
-            this.FirstName = FirstName;
-            this.LastName = LastName;
+        public EmployeeInMemory(string FirstName, string LastName, string Sex)
+            : base(FirstName, LastName)
+        {  
             this.Sex = Sex;
         }
-        public Employee(string FirstName, string LastName, string Sex, string Age)
+        public EmployeeInMemory(string FirstName, string LastName, string Sex, string Age)
+            : base(FirstName, LastName)
         {
             this.Age = Age;
         }
-        public void AddGrade(float grade)
+        public override void AddGrade(float grade)
         {
             // metoda przy każdym wywołaniu dodaje kolejne punkty do listy
             if (grade >= 0 && grade <= 100)
@@ -35,7 +32,8 @@
                 throw new Exception($" {grade} Inwalid grade values !");
             }
         }
-        public void AddGrade(string grade)
+
+        public override void AddGrade(string grade)
         {
             // sprawdza czy grade da się sparsować do float jeśli tak to przypisuje do result
 
@@ -46,18 +44,22 @@
             else if (char.TryParse(grade, out char charResult))
             {
                 this.AddGrade(charResult);
-            }else                 
+            }
+            else
             {
                 throw new Exception($"This string: {grade} is not float !");
             }
         }
-        public void AddGrade(int grade)
+
+        public override void AddGrade(int grade)
         {
             var result = (float)grade;
-            this.AddGrade(result);  
+            this.AddGrade(result);
         }
-        public void AddGrade(double grade)
+
+        public override void AddGrade(double grade)
         {
+
             if (grade >= float.MinValue && grade <= float.MaxValue)
             {
                 var result = (double)grade;
@@ -68,10 +70,11 @@
                 throw new Exception($"variable range exceeded: {grade} is not float !");
             }
         }
-        public void AddGrade(char grade)
+
+        public override void AddGrade(char grade)
         {
             switch (grade)
-            {  
+            {
                 case 'A':
                 case 'a':
                     this.AddGrade(100);
@@ -96,12 +99,13 @@
                     throw new Exception("Wrong Letter !");
             }
         }
-        public Statistics GetStatistics()
+
+        public override Statistics GetStatistics()
         {
-            var statistics = new Statistics(); 
-            statistics.Average = 0;            
-            statistics.Max = float.MinValue;   
-            statistics.Min = float.MaxValue;   
+            var statistics = new Statistics();
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
 
             foreach (var grade in this.grades)
             {
@@ -132,7 +136,6 @@
             }
 
             return statistics;
-        }      
-        
+        }
     }
 }

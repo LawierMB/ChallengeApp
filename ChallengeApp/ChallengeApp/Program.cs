@@ -20,7 +20,7 @@ var objectType = Console.ReadLine();
         case "P":
             {
                 AddDataPerson("pracownika", 1);
-                var employee = new Employee(name, lastName, sex, age);
+                var employee = new EmployeeInMemory(name, lastName, sex, age);
             while (true)
             {
                 Console.WriteLine("Podaj kolejną ocenę w zakresie od 0 do 100 i A do E dla pracownika " + name + " " + lastName + ": ");

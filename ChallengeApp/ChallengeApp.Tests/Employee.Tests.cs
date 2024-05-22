@@ -6,7 +6,7 @@
         public void WhenISubmitThreeRatingsIWillReceiveTheExpectedAverage()
         {
             // arrange 
-            var employee = new Employee("Artem", "Dziarski", "M");
+            var employee = new EmployeeInMemory("Artem", "Dziarski", "M");
 
             employee.AddGrade(3);
             employee.AddGrade(4);
@@ -23,7 +23,7 @@
         public void WhenISubmitThreeDecimalRatingsReceiveTheExpectedAverage()
         {
             // arrange 
-            var employee = new Employee("Artem", "Dziarski", "M");
+            var employee = new EmployeeInMemory("Artem", "Dziarski", "M");
 
             employee.AddGrade(3.4f);
             employee.AddGrade(4.3f);
@@ -39,7 +39,7 @@
         public void WhenISubmittedThreeGradesIDidntReceiveTheExpectedAverage()
         {
             // arrange 
-            var employee = new Employee("Artem", "Dziarski", "M");
+            var employee = new EmployeeInMemory("Artem", "Dziarski", "M");
 
             employee.AddGrade(8);
             employee.AddGrade(3);
@@ -56,7 +56,7 @@
         public void WhenISubmittedThreeRatingsIWillReceivetheExpectedMaxValue()
         {
             // arrange 
-            var employee = new Employee("Artem", "Dziarski", "M");
+            var employee = new EmployeeInMemory("Artem", "Dziarski", "M");
 
             employee.AddGrade(3);
             employee.AddGrade(4);
@@ -72,7 +72,7 @@
         public void TheAverageGradeReachesTheBRange()
         {
             // arrange 
-            var employee = new Employee("Artem", "Dziarski", "M");
+            var employee = new EmployeeInMemory("Artem", "Dziarski", "M");
 
             employee.AddGrade('C');
             employee.AddGrade(70);
@@ -92,7 +92,7 @@
         public void TheAverageGradeReachesTheCRange()
         {
             // arrange 
-            var employee = new Employee("Artem", "Dziarski", "M");
+            var employee = new EmployeeInMemory("Artem", "Dziarski", "M");
             
             employee.AddGrade('d');
             employee.AddGrade('d');
