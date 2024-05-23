@@ -6,7 +6,7 @@ string name="", lastName="", sex = "", age="";
 Console.WriteLine("-----------------------------------------------------------------");
 Console.WriteLine("| Witamy w programie XYZ do oceny kierowników i pracowników !   |");
 Console.WriteLine("+---------------------------------------------------------------+");
-Console.WriteLine("| Dodajesz pracownika: (P), kierownika (K) czy wychodzisz (Q)?  |");
+Console.WriteLine("| Dodajesz pracownika: (PM) in Memory (PF) in File, kierownika (K) czy wychodzisz (Q)?  |");
 
 var objectType = Console.ReadLine();
 
@@ -17,7 +17,40 @@ var objectType = Console.ReadLine();
             {
                 return;
             }
-        case "P":
+    case "PF":
+        {
+            AddDataPerson("pracownika", 1);
+            var employee = new EmployeeInFile(name, lastName);
+            while (true)
+            {
+                Console.WriteLine("Podaj kolejną ocenę w zakresie od 0 do 100 i A do E dla pracownika " + name + " " + lastName + ": ");
+                var input = Console.ReadLine();
+                if (input == "q")
+                {
+                    break;
+                }
+                try
+                {
+                    employee.AddGrade(input);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Exception Catchet:{e.Message}");
+                }
+            }
+            //employee.AddGrade(45);
+            //employee.AddGrade(80);
+            //employee.AddGrade(20);
+            //employee.AddGrade(5.6f);
+
+            var statistic = employee.GetStatistics();
+            Console.WriteLine($"Average :{statistic.Average:N2}");
+            Console.WriteLine($"Max :{statistic.Max}");
+            Console.WriteLine($"Min :{statistic.Min}");
+            Console.WriteLine($"Grade :{statistic.AverageLetter}");
+        }
+        break;
+        case "PM":
             {
                 AddDataPerson("pracownika", 1);
                 var employee = new EmployeeInMemory(name, lastName, sex, age);

@@ -1,31 +1,22 @@
 ﻿namespace ChallengeApp
 {
-    public class EmployeeInMemory : EmployeeBase
+    public class EmployeeInFile : EmployeeBase
     {
-        private List<float> grades = new List<float>();
+        private const string fileName = "Grades.txt";
+        public EmployeeInFile(string FirstName, string LastName)
+            : base(FirstName, LastName)
+        {
 
-        public string Sex { get; private set; }
-        public string Age { get; private set; }
-        public EmployeeInMemory(string FirstName, string LastName) 
-            : base(FirstName, LastName)
-        {
-        }
-        public EmployeeInMemory(string FirstName, string LastName, string Sex)
-            : base(FirstName, LastName)
-        {  
-            this.Sex = Sex;
-        }
-        public EmployeeInMemory(string FirstName, string LastName, string Sex, string Age)
-            : base(FirstName, LastName)
-        {
-            this.Age = Age;
         }
         public override void AddGrade(float grade)
         {
             // metoda przy każdym wywołaniu dodaje kolejne punkty do listy
             if (grade >= 0 && grade <= 100)
             {
-                this.grades.Add(grade);
+                using (var writer = File.AppendText(fileName))
+                {
+                    writer.WriteLine(grade);
+                }
             }
             else
             {
@@ -38,16 +29,26 @@
             statistics.Average = 0;
             statistics.Max = float.MinValue;
             statistics.Min = float.MaxValue;
+            var lineCout = 0;
 
-            foreach (var grade in this.grades)
+            if (File.Exists(fileName))
             {
-                statistics.Max = Math.Max(statistics.Max, grade);
-                statistics.Min = Math.Min(statistics.Min, grade);
-                statistics.Average += grade;
+                using (var reader = File.OpenText(fileName))
+                {
+                    var line = reader.ReadLine();
+                    while (line != null)
+                    {
+                        var number = float.Parse(line);
+                        statistics.Max = Math.Max(statistics.Max, number);
+                        statistics.Min = Math.Min(statistics.Min, number);
+                        statistics.Average += number;
+                        lineCout++;
+                        line = reader.ReadLine();
+                    }
+                }
+                statistics.Average /= lineCout;
             }
-            statistics.Average /= this.grades.Count;
-
-            // dla wartości średniej Average przypisujemy symbol literowy w zależności od zakresu średniej
+            
             switch (statistics.Average)
             {
                 case var average when average >= 80:
@@ -66,8 +67,11 @@
                     statistics.AverageLetter = 'E';
                     break;
             }
-
-            return statistics;
-        }
+            if (File.Exists (fileName))
+            {
+                File.Delete (fileName);
+            }
+            return statistics;     
+        } 
     }
 }
